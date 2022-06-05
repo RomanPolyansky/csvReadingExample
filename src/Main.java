@@ -1,12 +1,17 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
 
         ReportReader reportReader = new ReportReader();
 
+        ArrayList<String> monthlyReports = reportReader.getReportContents('m');
+        ArrayList<String> annualReports = reportReader.getReportContents('u');
+
         System.out.println("Месячные отчёты:");
-        System.out.println(reportReader.getReportContents('m'));
+        System.out.println(monthlyReports);
 
         System.out.println("Годовые отчёты:");
-        System.out.println(reportReader.getReportContents('y'));
+        System.out.println(annualReports);
     }
 }
