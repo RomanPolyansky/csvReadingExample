@@ -9,7 +9,7 @@ public class ReportReader {
     String reportsPath = "./resources/";
     File f = new File(reportsPath);
 
-    public ArrayList<String> getReportContents(Character reportSignature) {
+    public ArrayList<String> getReportContents(String reportSignature) {
         ArrayList<String> fileNames = getAvailableReportsFileNamesFromExplorer(reportSignature);
 
         ArrayList<String> filesContents = new ArrayList<>();
@@ -21,19 +21,15 @@ public class ReportReader {
         return filesContents;
     }
 
-    private ArrayList<String> getAvailableReportsFileNamesFromExplorer(Character reportSignature) {
+    private ArrayList<String> getAvailableReportsFileNamesFromExplorer(String reportSignature) {
         String[] filesList = f.list();
         ArrayList<String> reportNames = new ArrayList<>();
         for (String fileName : filesList) {
-            if (getFileSignature(fileName) == reportSignature) {
+            if (fileName.startsWith(reportSignature)) {
                 reportNames.add(fileName);
             }
         }
         return reportNames;
-    }
-
-    private Character getFileSignature(String fileName) {
-        return fileName.charAt(0);
     }
 
     private String readFileContentsOrNull(String path)
